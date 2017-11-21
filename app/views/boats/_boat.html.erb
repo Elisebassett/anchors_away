@@ -1,0 +1,15 @@
+<h2><%= boat.name %></h2>
+<% if boat.user == current_user %>
+<% else %>
+	<p><strong>Boat Owner:</strong> <%= boat.user.name %></p>
+<% end %>
+<%= form_with model: boat, class: "edit_form" do |f| %>
+	<p><strong>Container Capcity:</strong></p> 
+	<%= f.number_field :containers, value: boat.containers, readonly: true, class: 'edit_field first_field' %>
+	<p><strong>Location:</strong></p> 
+	<%= f.text_area :location, value: boat.location, readonly: true, class: 'edit_field' %>
+	<%= f.submit "Make Changes", class: "make_changes" %>
+	<% if boat.user == current_user %>
+		<i class="edit">Edit</i>
+	<% end %>
+<% end %>

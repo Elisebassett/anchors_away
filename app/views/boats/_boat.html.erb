@@ -12,7 +12,7 @@
 		<%= f.submit "Make Changes", class: 'boat_make_changes' %>
 		<% if boat.user == current_user %>
 			<i class="boat_edit">Edit</i>
-			<%= link_to "Delete", boat_path, method: :delete, class: "delete_boat" %>
+			<%= link_to "Delete", boat, method: :delete, class: "delete_boat", remote: true %>
 		<% end %>
 	<% end %>
 </div>

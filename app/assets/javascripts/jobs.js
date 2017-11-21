@@ -1,4 +1,4 @@
-$(function () {
+$(document).on('turbolinks:load', function(){
 	$('.job_make_changes').hide();
 	
 	$('.job_edit').on('click', function(){

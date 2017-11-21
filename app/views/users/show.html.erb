@@ -4,6 +4,8 @@
 <%= link_to "Add a Job", new_job_path %>
 <%= link_to "Browse Boats", boat_path %>
 <%= link_to "Browse Jobs", job_path %>
+<br>
+<%= image_tag current_user.avatar.url(:medium) %>
 <h2>My Boats</h2>
 <% @boats.each do |boat| %>
 	<%= render :partial => 'boats/boat', :object => boat %>

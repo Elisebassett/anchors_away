@@ -1,4 +1,9 @@
-$(function () {
+
+
+
+
+
+$(document).on('turbolinks:load', function(){
 	
 	$('.boat_make_changes').hide();
 	

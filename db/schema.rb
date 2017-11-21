@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121171550) do
+ActiveRecord::Schema.define(version: 20171121204501) do
 
   create_table "boats", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20171121171550) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "job_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "job_id"
+    t.integer "boat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "count"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -50,7 +58,6 @@ ActiveRecord::Schema.define(version: 20171121171550) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
- #the following four lines can be accessed with 'avatar'   
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.integer "avatar_file_size"

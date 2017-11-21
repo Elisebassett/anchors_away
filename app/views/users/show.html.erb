@@ -1,9 +1,9 @@
 <h1>Welcome <%= current_user.name %> </h1>
 <%= link_to "Edit Info", edit_user_registration_path %>
 <%= link_to "Add a Boat", new_boat_path %>
-<%= link_to "Add a Job", edit_user_registration_path %>
+<%= link_to "Add a Job", new_job_path %>
 <%= link_to "Browse Boats", boat_path %>
-<%= link_to "Browse Jobs", edit_user_registration_path %>
+<%= link_to "Browse Jobs", job_path %>
 <h2>My Boats</h2>
 <% @boats.each do |boat| %>
 	<%= render :partial => 'boats/boat', :object => boat %>

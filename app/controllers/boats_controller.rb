@@ -4,7 +4,7 @@ class BoatsController < ApplicationController
   end
 
   def show
-
+    @boats = Boat.all
   end
 
   def new
@@ -25,7 +25,10 @@ class BoatsController < ApplicationController
   end
 
   def destroy
-  
+    respond_to do |format|
+      Boat.find(params[:id]).destroy
+      format.js # destroy.js.erb
+    end
   end
 
   private

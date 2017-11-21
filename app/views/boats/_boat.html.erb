@@ -1,15 +1,18 @@
-<h2><%= boat.name %></h2>
-<% if boat.user == current_user %>
-<% else %>
-	<p><strong>Boat Owner:</strong> <%= boat.user.name %></p>
-<% end %>
-<%= form_with model: boat, class: "edit_form" do |f| %>
-	<p><strong>Container Capcity:</strong></p> 
-	<%= f.number_field :containers, value: boat.containers, readonly: true, class: 'edit_field first_field' %>
-	<p><strong>Location:</strong></p> 
-	<%= f.text_area :location, value: boat.location, readonly: true, class: 'edit_field' %>
-	<%= f.submit "Make Changes", class: "make_changes" %>
+<div class="boat_info">
+	<h2><%= boat.name %></h2>
 	<% if boat.user == current_user %>
-		<i class="edit">Edit</i>
+	<% else %>
+		<p><strong>Boat Owner:</strong> <%= boat.user.name %></p>
 	<% end %>
-<% end %>
+	<%= form_with model: boat, class: 'boat_edit_form' do |f| %>
+		<p><strong>Container Capcity:</strong></p> 
+		<%= f.number_field :containers, value: boat.containers, readonly: true, class: 'boat_edit_field boat_first_field' %>
+		<p><strong>Location:</strong></p> 
+		<%= f.text_area :location, value: boat.location, readonly: true, class: 'boat_edit_field' %>
+		<%= f.submit "Make Changes", class: 'boat_make_changes' %>
+		<% if boat.user == current_user %>
+			<i class="boat_edit">Edit</i>
+			<%= link_to "Delete", boat_path, method: :delete, class: "delete_boat" %>
+		<% end %>
+	<% end %>
+</div>

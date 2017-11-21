@@ -1,0 +1,23 @@
+<div class="job_info">
+	<%= form_with model: job, class: 'job_edit_form' do |f| %>
+		<%= f.text_field :title, value: job.title, readonly: true, class: 'job_edit_field job_first_field' %>
+		<%= f.text_area :description, value: job.description, readonly: true, class: 'job_edit_field' %>
+		<% if job.user == current_user %>
+		<% else %>
+			<p><strong>Created by:</strong> <%= job.user.name %></p>
+		<% end %>
+		<p><strong>Cost of Job:</strong></p> 
+		<%= f.number_field :cost, value: job.cost, readonly: true, class: 'job_edit_field' %>
+		<p><strong>Container Capcity:</strong></p> 
+		<%= f.number_field :containers, value: job.containers, readonly: true, class: 'job_edit_field' %>
+		<p><strong>Origin:</strong></p> 
+		<%= f.text_area :origin, value: job.origin, readonly: true, class: 'job_edit_field' %>
+		<p><strong>Destination:</strong></p> 
+		<%= f.text_area :destination, value: job.destination, readonly: true, class: 'job_edit_field' %>
+		<%= f.submit "Make Changes", class: 'job_make_changes' %>
+		<% if job.user == current_user %>
+			<i class="job_edit">Edit</i>
+			<%= link_to "Delete", job_path, method: :delete, class: "delete_job" %>
+		<% end %>
+	<% end %>
+</div>

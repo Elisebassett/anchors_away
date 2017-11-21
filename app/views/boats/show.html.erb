@@ -1,2 +1,5 @@
-<h1>Boats#show</h1>
-<p>Find me in app/views/boats/show.html.erb</p>
+<h1>Browse Boats</h1>
+
+<% @boats.each do |boat| %>
+	<%= render :partial => 'boats/boat', :object => boat %>
+<% end %> %>

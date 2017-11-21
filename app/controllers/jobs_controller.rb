@@ -4,6 +4,7 @@ class JobsController < ApplicationController
 
   def show
     @jobs = Job.all
+    @new_booking = Booking.new
   end
 
   def new

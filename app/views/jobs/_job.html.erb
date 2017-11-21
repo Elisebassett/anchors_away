@@ -1,11 +1,12 @@
 <div class="job_info">
+<!-- Job display and Hidden Edit form appears via js when Edit is clicked -->
 	<%= form_with model: job, class: 'job_edit_form' do |f| %>
-		<%= f.text_field :title, value: job.title, readonly: true, class: 'job_edit_field job_first_field' %>
-		<%= f.text_area :description, value: job.description, readonly: true, class: 'job_edit_field' %>
+		<h2><%= f.text_field :title, value: job.title, readonly: true, class: 'job_edit_field job_first_field' %></h2>
 		<% if job.user == current_user %>
 		<% else %>
 			<p><strong>Created by:</strong> <%= job.user.name %></p>
 		<% end %>
+		<%= f.text_area :description, value: job.description, readonly: true, class: 'job_edit_field' %>
 		<p><strong>Cost of Job:</strong></p> 
 		<%= f.number_field :cost, value: job.cost, readonly: true, class: 'job_edit_field' %>
 		<p><strong>Container Capcity:</strong></p> 
@@ -20,4 +21,26 @@
 			<%= link_to "Delete", job, method: :delete, class: "delete_job", remote: true %>
 		<% end %>
 	<% end %>
+<!-- Book a boat form can only be seen by current users-->
+	<% if current_user %>
+		<h3>Book a Boat</h3>
+		<%= form_with model: @new_booking do |f| %>
+			<%= f.hidden_field :job_id, value: job.id %>
+			<%= f.select(:boat_id) do %>
+				<option value="" disabled selected>Select a Ship</option>
+				<% current_user.boats.each do |boat| %>
+					<option value="<%= boat.id %>"><%= boat.name %> | Containers: <%= boat.containers %></option>
+				<% end %><!-- each loop -->
+			<% end %><!-- Select Do -->
+			<%= f.submit %>
+		<% end %><!-- form -->
+	<% end %><!-- if -->
+	<h3>Booked Boats</h3>
+	<% container_count = 0 %>
+	<% job.boats.each do |boat| %>
+		<p><%= boat.name %> | Containers: <%= boat.containers %></p>
+		<% container_count = boat.containers + container_count %>
+	<% end %>
+	<p>Containers left: <%= job.containers - container_count %></p>
+
 </div>

@@ -1,6 +1,8 @@
 class Job < ApplicationRecord
 
 	belongs_to :user
+	has_many 	 :bookings
+	has_many 	 :boats, through: :bookings
 
 	validates :title,    		presence: true
   validates :description, presence: true

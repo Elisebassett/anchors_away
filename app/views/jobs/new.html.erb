@@ -4,7 +4,17 @@
 	<%= f.text_area :description, placeholder: 'Job Description' %>
 	<%= f.number_field :cost, placeholder: 'Cost' %>
 	<%= f.number_field :containers, placeholder: 'Containers' %>
-	<%= f.text_area :origin, placeholder: 'Origin' %>
-	<%= f.text_area :destination, placeholder: 'Destination' %>
+	<%= f.select(:origin) do %>
+		<option value="" disabled selected>Select an Origin Location</option>
+		<% ["ADALV, Andorra la Vella, Andorra", "AEAAN, Al Ain, United Arab Emirates", "AFBAG, Bagram, Afghanistan", "AGANU, Antigua, Antigua and Barbuda", "ATFUR, Fürnitz, Austria", "BEAAB, Aalst, Belgium", "BSWZY, Seaplane Base, Bahamas", "BEFR, Brest, France", "GLAGM, Angmagssalik, Greenland", "NPANP, Annapurna, Nepal"].each do |origin| %>
+			<option value="<%= origin %>"><%= origin %></option>
+		<% end %><!-- each loop -->
+	<% end %><!-- Select Do -->
+	<%= f.select(:destination) do %>
+		<option value="" disabled selected>Select an Destination Location</option>
+		<% ["ADALV, Andorra la Vella, Andorra", "AEAAN, Al Ain, United Arab Emirates", "AFBAG, Bagram, Afghanistan", "AGANU, Antigua, Antigua and Barbuda", "ATFUR, Fürnitz, Austria", "BEAAB, Aalst, Belgium", "BSWZY, Seaplane Base, Bahamas", "BEFR, Brest, France", "GLAGM, Angmagssalik, Greenland", "NPANP, Annapurna, Nepal"].each do |destination| %>
+			<option value="<%= destination %>"><%= destination %></option>
+		<% end %><!-- each loop -->
+	<% end %><!-- Select Do -->
 	<%= f.submit %>
 <% end %>

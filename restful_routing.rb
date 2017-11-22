@@ -34,6 +34,4 @@ cancel_user_registration GET    /users/cancel(.:format)        users/registratio
                          PUT    /jobs/:id(.:format)            jobs#update
                          DELETE /jobs/:id(.:format)            jobs#destroy
                 bookings POST   /bookings(.:format)            bookings#create
-                 booking PATCH  /bookings/:id(.:format)        bookings#update
-                         PUT    /bookings/:id(.:format)        bookings#update
-                         DELETE /bookings/:id(.:format)        bookings#destroy
+                 booking DELETE /bookings/:id(.:format)        bookings#destroy

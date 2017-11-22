@@ -2,6 +2,11 @@
 <%= form_with model: @boat do |f| %>
 	<%= f.text_field :name, placeholder: 'Boat Name' %>
 	<%= f.number_field :containers, placeholder: 'Container Capacity' %>
-	<%= f.text_field :location, placeholder: 'Current Location' %>
+	<%= f.select(:location) do %>
+		<option value="" disabled selected>Select a Current Location</option>
+		<% ["ADALV, Andorra la Vella, Andorra", "AEAAN, Al Ain, United Arab Emirates", "AFBAG, Bagram, Afghanistan", "AGANU, Antigua, Antigua and Barbuda", "ATFUR, Fürnitz, Austria", "BEAAB, Aalst, Belgium", "BSWZY, Seaplane Base, Bahamas", "BEFR, Brest, France", "GLAGM, Angmagssalik, Greenland", "NPANP, Annapurna, Nepal"].each do |location| %>
+			<option value="<%= location %>"><%= location %></option>
+		<% end %><!-- each loop -->
+	<% end %><!-- Select Do -->
 	<%= f.submit %>
 <% end %>

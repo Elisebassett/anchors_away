@@ -24,7 +24,7 @@
 <!-- Book a boat form can only be seen by current users-->
 	<% if current_user %>
 		<h3>Book a Boat</h3>
-		<%= form_with model: @new_booking do |f| %>
+		<%= form_with model: @new_booking, class: "booking_form" do |f| %>
 			<%= f.hidden_field :job_id, value: job.id %>
 			<%= f.select(:boat_id) do %>
 				<option value="" disabled selected>Select a Ship</option>
@@ -37,9 +37,12 @@
 	<% end %><!-- if -->
 	<h3>Booked Boats</h3>
 	<% container_count = 0 %>
-	<% job.boats.each do |boat| %>
-		<p><%= boat.name %> | Containers: <%= boat.containers %></p>
-		<% container_count = boat.containers + container_count %>
+	<% job.bookings.each do |booking| %>
+		<div class="booking">	
+			<p><%= booking.boat.name %> | Containers: <%= booking.boat.containers %></p>
+			<%= link_to "Remove", booking, method: :delete, class: 'remove_booking', remote: true %>
+			<% container_count = booking.boat.containers + container_count %>
+		</div>
 	<% end %>
 	<p>Containers left: <%= job.containers - container_count %></p>
 

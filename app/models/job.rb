@@ -9,7 +9,12 @@ class Job < ApplicationRecord
   validates :containers,  presence: true
   validates :origin,      presence: true
   validates :destination, presence: true
-  validates :, presence: true
+
+  validates :title, uniqueness: true
+  
+  validates :description, length: { minimum: 50 }
+
+  validates :cost, numericality: { greater_than: 1000 }
 
   validates :origin, inclusion: { in: ["ADALV, Andorra la Vella, Andorra", "AEAAN, Al Ain, United Arab Emirates", "AFBAG, Bagram, Afghanistan", "AGANU, Antigua, Antigua and Barbuda", "ATFUR, Fürnitz, Austria", "BEAAB, Aalst, Belgium", "BSWZY, Seaplane Base, Bahamas", "BEFR, Brest, France", "GLAGM, Angmagssalik, Greenland", "NPANP, Annapurna, Nepal"]}
 

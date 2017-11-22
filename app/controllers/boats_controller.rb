@@ -12,8 +12,12 @@ class BoatsController < ApplicationController
   end
 
   def create
-    current_user.boats.create(boat_params)
-    redirect_to current_user
+    @boat = current_user.boats.new(boat_params)
+    if @boat.save
+      redirect_to current_user
+    else
+      render :new
+    end
   end
 
   def update

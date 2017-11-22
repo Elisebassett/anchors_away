@@ -12,8 +12,12 @@ class JobsController < ApplicationController
   end
 
   def create
-    current_user.jobs.create(job_params)
-    redirect_to current_user
+    @job = current_user.jobs.new(job_params)
+    if @job.save
+      redirect_to current_user
+    else
+      render :new
+    end
   end
 
   def update

@@ -12,7 +12,6 @@ class BoatsController < ApplicationController
   end
 
   def create
-
     @boat = current_user.boats.new(boat_params)
     if @boat.save
       redirect_to current_user

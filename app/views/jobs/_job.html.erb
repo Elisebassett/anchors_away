@@ -23,18 +23,22 @@
 	<% end %>
 <!-- Book a boat form can only be seen by current users-->
 	<% if current_user %>
-		<h3>Book a Boat</h3>
-		<%= form_with model: @new_booking, class: "booking_form" do |f| %>
-			<%= f.hidden_field :job_id, value: job.id %>
-			<%= f.select(:boat_id) do %>
-				<option value="" disabled selected>Select a Ship</option>
-				<% current_user.boats.each do |boat| %>
-					<option value="<%= boat.id %>"><%= boat.name %> | Containers: <%= boat.containers %></option>
-				<% end %><!-- each loop -->
-			<% end %><!-- Select Do -->
-			<%= f.submit %>
-		<% end %><!-- form -->
-	<% end %><!-- if -->
+		<% if job.open == true %>
+			<h3>Book a Boat</h3>
+			<%= form_with model: @new_booking, class: "booking_form" do |f| %>
+				<%= f.hidden_field :job_id, value: job.id %>
+				<%= f.select(:boat_id) do %>
+					<option value="" disabled selected>Select a Ship</option>
+					<% current_user.boats.each do |boat| %>
+						<option value="<%= boat.id %>"><%= boat.name %> | Containers: <%= boat.containers %></option>
+					<% end %><!-- each loop -->
+				<% end %><!-- Select Do -->
+				<%= f.submit %>
+			<% end %><!-- form -->
+		<% else %>
+		<h4>This job has been closed</h4>	
+		<% end %><!-- if job is open or closed-->
+	<% end %><!-- if current_user -->
 	<h3>Booked Boats</h3>
 	<% container_count = 0 %>
 	<% job.bookings.each do |booking| %>

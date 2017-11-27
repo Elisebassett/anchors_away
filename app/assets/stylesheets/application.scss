@@ -1,0 +1,19 @@
+
+//= require_tree .
+//= require_self
+
+@import "materialize/components/color";
+$primary-color: color("blue", "lighten-2") !default;
+$secondary-color: color("green", "base") !default;
+@import 'materialize';
+
+.navbar-fixed {
+	margin-bottom: -15px;
+}
+
+body {
+	font-family: 'Muli';
+}
+
+
+

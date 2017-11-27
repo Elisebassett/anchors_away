@@ -5,6 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'materialize-sass', '~> 0.100.2'
+
+gem 'material_icons'
+
 gem 'paperclip'
 
 gem 'jquery-rails'

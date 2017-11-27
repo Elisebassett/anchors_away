@@ -1,18 +1,57 @@
-<div class="boat_info">
-	<h2><%= boat.name %></h2>
-	<% if boat.user == current_user %>
-	<% else %>
-		<p><strong>Boat Owner:</strong> <%= boat.user.name %></p>
-	<% end %>
-	<%= form_with model: boat, class: 'boat_edit_form' do |f| %>
-		<p><strong>Container Capcity:</strong></p> 
-		<%= f.number_field :containers, value: boat.containers, readonly: true, class: 'boat_edit_field boat_first_field' %>
-		<p><strong>Location:</strong></p> 
-		<%= f.text_area :location, value: boat.location, readonly: true, class: 'boat_edit_field' %>
-		<%= f.submit "Make Changes", class: 'boat_make_changes' %>
-		<% if boat.user == current_user %>
-			<i class="boat_edit">Edit</i>
-			<%= link_to "Delete", boat, method: :delete, class: "delete_boat", remote: true %>
-		<% end %>
-	<% end %>
+<div class="boat_info col s6">
+	<div class="card">
+		<div class="card-content">
+			<div class="row">
+				<div class="col s7">
+					<div class="row">
+						<h2><%= boat.name %></h2>
+					</div>
+					<% if boat.user == current_user %>
+					<% else %>
+					<div class="row">
+						<p class="col"><strong>Boat Owner:</strong> <%= boat.user.name %></p>
+					</div>
+					<% end %>
+					<%= form_with model: boat, class: 'boat_edit_form' do |f| %>
+						<p><strong>Container Capacity:</strong></p>
+						<%= f.number_field :containers, value: boat.containers, readonly: true, class: 'boat_edit_field boat_first_field' %> 
+						<div class="row">
+							<p><strong>Location:</strong> <%= boat.location %></p>
+						</div>
+						<div class="row">
+							
+						</div>
+						<%= f.submit "Make Changes", class: 'boat_make_changes btn waves-effect waves-light' %>
+						<% if boat.user == current_user %>
+							<i class="boat_edit">Edit</i>
+							<%= link_to "Delete", boat, method: :delete, class: "delete_boat", remote: true %>
+						<% end %>
+					<% end %>
+				</div> <!-- description col -->
+				<div class="col s3">
+					<%= image_tag('boat_avatar.jpg', class: "boat-avatar") %>
+				</div>
+			</div>
+		</div><!-- description -->
+		<ul class="collapsible" data-collapsible="accordion">
+	    <li>
+	      <div class="collapsible-header"><i class="material-icons"></i>Bookings</div>
+	      <div class="collapsible-body"><span>
+	      	<h5>Bookings</h5>
+					<% boat.bookings.each do |booking| %>
+						<div class="booking">
+						<% if booking %>
+							<p><%= booking.job.title %></p>
+							<%= link_to "Remove", booking, method: :delete, class: 'remove_booking', remote: true %>
+							<% else %>
+								<p>This boat has no bookings</p>	
+							<% end %>	
+
+						</div>
+					<% end %>
+
+	      </span></div>
+	    </li>
+	  </ul>
+	</div><!-- end of card -->
 </div>

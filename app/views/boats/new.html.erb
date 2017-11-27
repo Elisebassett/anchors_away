@@ -1,4 +1,29 @@
-<h1>Add a new boat</h1>
+<div class="container">
+	<div class="row">
+		<h1 class="col s12">Add a new boat</h1>
+	</div>
+	<div class="row">
+		<%= form_with model: @boat, local: true, class: 'col s12' do |f| %>
+			<div class="input-field">
+				<%= f.text_field :name, placeholder: 'Boat Name', class: 'col s12'%>
+			</div>
+			<br>
+		  <div class="input-field">
+		  	<%= f.file_field :avatar, class: 'col s12'%>
+	  	</div>
+			<br>
+			<div class="input-field">
+				<%= f.number_field :containers, placeholder: 'Containers', class: "validate" %>
+			</div>
+			<div class="input-field">
+				<%= f.select :location, ["ADALV, Andorra la Vella, Andorra", "AEAAN, Al Ain, United Arab Emirates", "AFBAG, Bagram, Afghanistan", "AGANU, Antigua, Antigua and Barbuda", "ATFUR, Fürnitz, Austria", "BEAAB, Aalst, Belgium", "BSWZY, Seaplane Base, Bahamas", "BEFR, Brest, France", "GLAGM, Angmagssalik, Greenland", "NPANP, Annapurna, Nepal"], prompt: "Select a Current Location", class: "col s12 input-field"%>
+				</div>
+			<%= f.submit 'Create New Boat', class: 'btn waves-effect waves-light' %>
+		<% end %>
+		
+	</div>
+
+</div><!-- container -->
 
 <% if @boat.errors.full_messages.any? %>
 	<% @boat.errors.full_messages.each do |error| %>
@@ -6,14 +31,3 @@
 	<% end %>
 <% end %>
 
-<%= form_with model: @boat, local: true do |f| %>
-	<%= f.text_field :name, placeholder: 'Boat Name' %>
-	<%= f.number_field :containers, placeholder: 'Container Capacity' %>
-	<%= f.select(:location) do %>
-		<option value="" disabled selected>Select a Current Location</option>
-		<% ["ADALV, Andorra la Vella, Andorra", "AEAAN, Al Ain, United Arab Emirates", "AFBAG, Bagram, Afghanistan", "AGANU, Antigua, Antigua and Barbuda", "ATFUR, Fürnitz, Austria", "BEAAB, Aalst, Belgium", "BSWZY, Seaplane Base, Bahamas", "BEFR, Brest, France", "GLAGM, Angmagssalik, Greenland", "NPANP, Annapurna, Nepal"].each do |location| %>
-			<option value="<%= location %>"><%= location %></option>
-		<% end %><!-- each loop -->
-	<% end %><!-- Select Do -->
-	<%= f.submit %>
-<% end %>

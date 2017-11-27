@@ -4,15 +4,26 @@
     <title>AnchorsAwayNet</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track':  'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track':  'reload' %>
+    <%= stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Muli' %>
   </head>
 
   <body>
-    <% if current_user %>
-      <%= link_to "Profile", user_path(current_user) %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <% end %>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">Logo</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><%= link_to "Browse Boats", boats_path%></li>
+            <li><%= link_to "Browse Jobs", jobs_path%></li>
+            <% if current_user %>
+              <li><%= link_to "Profile", user_path(current_user) %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            <% end %>
+          </ul>
+      </nav>
+    </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

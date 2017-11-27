@@ -18,7 +18,11 @@ $(document).on('turbolinks:load', function(){
 		$(this).closest('.boat_info').remove();
 	});
 
+	$(document).ready(function() {
+    $('select').material_select();
+	});
 
+	
 
 
 

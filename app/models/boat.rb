@@ -1,7 +1,7 @@
 class Boat < ApplicationRecord
 		
 	 	belongs_to :user
-	 	has_many   :bookings
+	 	has_many   :bookings, dependent: :destroy
 	 	has_many   :jobs, through: :bookings
 
 	 	has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"

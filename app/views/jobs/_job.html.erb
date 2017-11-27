@@ -54,9 +54,9 @@
 								<h4>This job has been closed</h4>	
 								<% end %><!-- if job is open or closed-->
 							<% end %><!-- if current_user -->
-							<% container_count = 0 %>
+							
 							<br>
-							<p>Containers left: <%= job.containers - container_count %></p></span>
+							<p>Containers left: <%= job.containers_left %></p></span>
 					</div>
 				</li>
 				<li>
@@ -81,7 +81,6 @@
 									</div>
 									<div class="row">
 										<div class="col">
-											<% container_count = booking.boat.containers + container_count %>
 										</div>
 									</div>
 								</div>

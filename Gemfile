@@ -9,6 +9,8 @@ gem 'materialize-sass', '~> 0.100.2'
 
 gem 'material_icons'
 
+gem 'font-awesome-sass', '~> 4.7.0'
+
 gem 'paperclip'
 
 gem 'jquery-rails'

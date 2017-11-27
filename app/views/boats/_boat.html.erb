@@ -36,10 +36,10 @@
 	    <li>
 	      <div class="collapsible-header"><i class="material-icons"></i>Bookings</div>
 	      <div class="collapsible-body"><span>
-	      	<h5>Bookings</h5>
 					<% boat.bookings.each do |booking| %>
 						<div class="booking">
 						<% if booking %>
+			      	<h5>Bookings</h5>
 							<p><%= booking.job.title %></p>
 							<%= link_to "Remove", booking, method: :delete, class: 'remove_booking', remote: true %>
 							<% else %>

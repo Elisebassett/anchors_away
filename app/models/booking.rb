@@ -1,4 +1,4 @@
 class Booking < ApplicationRecord
-	belongs_to :boat, dependent: :destroy
-	belongs_to :job, dependent: :destroy
+	belongs_to :boat
+	belongs_to :job
 end

@@ -19,7 +19,9 @@
 							<p><strong>Location:</strong> <%= boat.location %></p>
 						</div>
 						<div class="row">
-							
+							<div class="input-field hide-boat-field">
+								<%= f.select :location, ["ADALV, Andorra la Vella, Andorra", "AEAAN, Al Ain, United Arab Emirates", "AFBAG, Bagram, Afghanistan", "AGANU, Antigua, Antigua and Barbuda", "ATFUR, Fürnitz, Austria", "BEAAB, Aalst, Belgium", "BSWZY, Seaplane Base, Bahamas", "BEFR, Brest, France", "GLAGM, Angmagssalik, Greenland", "NPANP, Annapurna, Nepal"], prompt: "Select a Current Location", class: "boat_edit_field col s12 input-field"%>
+							</div>
 						</div>
 						<%= f.submit "Make Changes", class: 'boat_make_changes btn waves-effect waves-light' %>
 						<% if boat.user == current_user %>
@@ -29,7 +31,7 @@
 					<% end %>
 				</div> <!-- description col -->
 				<div class="col s3">
-					<%= image_tag('boat_avatar.jpg', class: "boat-avatar") %>
+					<%= image_tag(boat.avatar.url(:medium), class: "boat-avatar") %>
 				</div>
 			</div>
 		</div><!-- description -->

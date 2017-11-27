@@ -15,9 +15,17 @@
 					<p><strong>Container Capcity:</strong></p> 
 					<%= f.number_field :containers, value: job.containers, readonly: true, class: 'job_edit_field' %>
 					<p><strong>Origin:</strong> <%= job.origin %></p>
-					<br>
+					<div class="row">
+						<div class="input-field hide-job-field">
+							<%= f.select :origin, ["ADALV, Andorra la Vella, Andorra", "AEAAN, Al Ain, United Arab Emirates", "AFBAG, Bagram, Afghanistan", "AGANU, Antigua, Antigua and Barbuda", "ATFUR, Fürnitz, Austria", "BEAAB, Aalst, Belgium", "BSWZY, Seaplane Base, Bahamas", "BEFR, Brest, France", "GLAGM, Angmagssalik, Greenland", "NPANP, Annapurna, Nepal"], prompt: "Select a Current Origin", class: "job_edit_field col s12 input-field"%>
+						</div>
+					</div>
 					<p><strong>Destination:</strong> <%= job.destination %></p>
-					<br>
+					<div class="row">
+						<div class="input-field hide-job-field">
+							<%= f.select :destination, ["ADALV, Andorra la Vella, Andorra", "AEAAN, Al Ain, United Arab Emirates", "AFBAG, Bagram, Afghanistan", "AGANU, Antigua, Antigua and Barbuda", "ATFUR, Fürnitz, Austria", "BEAAB, Aalst, Belgium", "BSWZY, Seaplane Base, Bahamas", "BEFR, Brest, France", "GLAGM, Angmagssalik, Greenland", "NPANP, Annapurna, Nepal"], prompt: "Select a Current Destination", class: "job_edit_field col s12 input-field"%>
+						</div>
+					</div>
 					<%= f.submit "Make Changes", class: 'job_make_changes btn waves-effect waves-light' %>
 					<% if job.user == current_user %>
 						<i class="job_edit">Edit</i>

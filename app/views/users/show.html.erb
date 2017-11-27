@@ -1,21 +1,59 @@
-<h1>Welcome <%= current_user.name %> </h1>
-<%= link_to "Edit Info", edit_user_registration_path %>
-<%= link_to "Add a Boat", new_boat_path %>
-<%= link_to "Add a Job", new_job_path %>
-<%= link_to "Browse Boats", boat_path %>
-<%= link_to "Browse Jobs", job_path %>
-<br>
-<%= image_tag current_user.avatar.url(:medium) %>
-<h2>My Boats</h2>
-<% @boats.each do |boat| %>
-	<%= render :partial => 'boats/boat', :object => boat %>
-<% end %>
+<div class="container-fluid">
+	<div class="row parallax-container">
+		<div class="user-banner-content">
+			<%= image_tag current_user.avatar.url(:thumb), class: "avatar col s1" %>
+			<h1 class="col s11">Welcome <%= current_user.name %> </h1>
+		</div>
+      <div class="parallax col s12">
+      	<%= image_tag 'http://www.caria.org/wp-content/uploads/2016/07/AFMS-II-Del-2-Barges.Final_.bmp', class: 'parallax-image' %></div>
+    </div><!-- banner content -->
+	</div><!-- banner container -->
 
-<h2>My Jobs</h2>
+	<nav class="nav-extended profile-nav">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="center hide-on-med-and-down">
+        <li><%= link_to "Edit Info", edit_user_registration_path %></li>
+				<li><%= link_to "Add a Boat", new_boat_path %></li>
+				<li><%= link_to "Add a Job", new_job_path %></li>
+				<li><%= link_to "Browse Boats", boat_path %></li>
+				<li><%= link_to "Browse Jobs", job_path %></li>
+      </ul>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+        <li class="tab"><a class="active" href="#my_boats">My Boats</a></li>
+        <li class="tab"><a href="#my_job">My Jobs</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="my_boats" class="col s12">
+  	<div class="row">
+	  	<h2 class="col s12">My Boats</h2>
+  	</div>
+		<div class="row">
+				<% @boats.each do |boat| %>
+					<%= render :partial => 'boats/boat', :object => boat %>
+				<% end %>
+		</div>		
 
-<% @jobs.each do |job| %>
-	<%= render :partial => 'jobs/job', :object => job %>
-<% end %>
+  </div><!-- my boats -->
+  <div id="my_job" class="col s12">
+  	<div class="row">
+  		<div class="col s12">
+  			<h2>My Jobs</h2>
+  		</div>
+  	</div>
+		<div class="row">
+			<div class="col s6">
+				<% @jobs.each do |job| %>
+					<%= render :partial => 'jobs/job', :object => job %>
+				<% end %>			
+			</div>
+		</div><!-- row -->
+  </div>
+
+	
+</div><!-- container -->
 
 
 		

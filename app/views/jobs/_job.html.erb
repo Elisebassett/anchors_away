@@ -1,53 +1,90 @@
-<div class="job_info">
+<div class="job_info col s12">
 <!-- Job display and Hidden Edit form appears via js when Edit is clicked -->
-	<%= form_with model: job, class: 'job_edit_form' do |f| %>
-		<h2><%= f.text_field :title, value: job.title, readonly: true, class: 'job_edit_field job_first_field' %></h2>
-		<% if job.user == current_user %>
-		<% else %>
-			<p><strong>Created by:</strong> <%= job.user.name %></p>
-		<% end %>
-		<%= f.text_area :description, value: job.description, readonly: true, class: 'job_edit_field' %>
-		<p><strong>Cost of Job:</strong></p> 
-		<%= f.number_field :cost, value: job.cost, readonly: true, class: 'job_edit_field' %>
-		<p><strong>Container Capcity:</strong></p> 
-		<%= f.number_field :containers, value: job.containers, readonly: true, class: 'job_edit_field' %>
-		<p><strong>Origin:</strong></p> 
-		<%= f.text_area :origin, value: job.origin, readonly: true, class: 'job_edit_field' %>
-		<p><strong>Destination:</strong></p> 
-		<%= f.text_area :destination, value: job.destination, readonly: true, class: 'job_edit_field' %>
-		<%= f.submit "Make Changes", class: 'job_make_changes' %>
-		<% if job.user == current_user %>
-			<i class="job_edit">Edit</i>
-			<%= link_to "Delete", job, method: :delete, class: "delete_job", remote: true %>
-		<% end %>
-	<% end %>
-<!-- Book a boat form can only be seen by current users-->
-	<% if current_user %>
-		<% if job.open == true %>
-			<h3>Book a Boat</h3>
-			<%= form_with model: @new_booking, class: "booking_form" do |f| %>
-				<%= f.hidden_field :job_id, value: job.id %>
-				<%= f.select(:boat_id) do %>
-					<option value="" disabled selected>Select a Ship</option>
-					<% current_user.boats.each do |boat| %>
-						<option value="<%= boat.id %>"><%= boat.name %> | Containers: <%= boat.containers %></option>
-					<% end %><!-- each loop -->
-				<% end %><!-- Select Do -->
-				<%= f.submit %>
-			<% end %><!-- form -->
-		<% else %>
-		<h4>This job has been closed</h4>	
-		<% end %><!-- if job is open or closed-->
-	<% end %><!-- if current_user -->
-	<h3>Booked Boats</h3>
-	<% container_count = 0 %>
-	<% job.bookings.each do |booking| %>
-		<div class="booking">	
-			<p><%= booking.boat.name %> | Containers: <%= booking.boat.containers %></p>
-			<%= link_to "Remove", booking, method: :delete, class: 'remove_booking', remote: true %>
-			<% container_count = booking.boat.containers + container_count %>
-		</div>
-	<% end %>
-	<p>Containers left: <%= job.containers - container_count %></p>
+	<div class="card">
+		<div class="card-content">
+			<div class="row">
+				<%= form_with model: job, class: 'job_edit_form' do |f| %>
+					<h2><%= f.text_field :title, value: job.title, readonly: true, class: 'job_edit_field job_first_field title' %></h2>
+					<% if job.user == current_user %>
+					<% else %>
+						<p><strong>Created by:</strong> <%= job.user.name %></p>
+					<% end %>
+					<%= f.text_area :description, value: job.description, readonly: true, class: 'materialize-textarea job_edit_field' %>
+					<p><strong>Cost of Job:</strong></p> 
+					<%= f.number_field :cost, value: job.cost, readonly: true, class: 'job_edit_field' %>
+					<p><strong>Container Capcity:</strong></p> 
+					<%= f.number_field :containers, value: job.containers, readonly: true, class: 'job_edit_field' %>
+					<p><strong>Origin:</strong> <%= job.origin %></p>
+					<br>
+					<p><strong>Destination:</strong> <%= job.destination %></p>
+					<br>
+					<%= f.submit "Make Changes", class: 'job_make_changes btn waves-effect waves-light' %>
+					<% if job.user == current_user %>
+						<i class="job_edit">Edit</i>
+						<%= link_to "Delete", job, method: :delete, class: "delete_job", remote: true %>
+					<% end %>
+				<% end %>
+			</div>
+			<ul class="collapsible">
+				<li>
+					<div class="collapsible-header"><i class="material-icons"></i><h5>Book A Boat</h5></div>
+					<div class="collapsible-body">
+						<span><!-- Book a boat form can only be seen by current users-->
+							<% if current_user %>
+								<% if job.open == true %>
+									<%= form_with model: @new_booking, class: "booking_form" do |f| %>
+										<%= f.hidden_field :job_id, value: job.id %>
+										<%= f.select(:boat_id) do %>
+											<option value="" disabled selected>Select a Ship</option>
+											<% current_user.boats.each do |boat| %>
+												<option value="<%= boat.id %>"><%= boat.name %> | Containers: <%= boat.containers %></option>
+											<% end %><!-- each loop -->
+										<% end %><!-- Select Do -->
+										<%= f.submit 'Book Boat', class: 'btn waves-effect waves-light' %>
+									<% end %><!-- form -->
+								<% else %>
+								<h4>This job has been closed</h4>	
+								<% end %><!-- if job is open or closed-->
+							<% end %><!-- if current_user -->
+							<% container_count = 0 %>
+							<br>
+							<p>Containers left: <%= job.containers - container_count %></p></span>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons"></i><h5>Booked Boats</h5></div>
+					<div class="collapsible-body"><span>
+						<div class="row">
+							<div class="col">
+								<h5>Booked Boats</h5>
+							</div>
+						</div>
+						<% job.bookings.each do |booking| %>
+								<div class="booking">	
+									<div class="row">
+										<div class="col">
+											<p><%= booking.boat.name %> | Containers: <%= booking.boat.containers %></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<%= link_to "Remove", booking, method: :delete, class: 'remove_booking', remote: true %>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<% container_count = booking.boat.containers + container_count %>
+										</div>
+									</div>
+								</div>
+						<% end %>
+					</span></div>
 
-</div>
+				</li>
+			</ul>
+			
+
+
+		</div><!-- end of card content -->
+	</div><!-- end of card -->
+</div><!-- end of info -->

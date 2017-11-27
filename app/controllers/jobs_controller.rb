@@ -1,10 +1,10 @@
 class JobsController < ApplicationController
   def index
-  end
-
-  def show
     @jobs = Job.all
     @new_booking = Booking.new
+  end
+
+  def show   
   end
 
   def new

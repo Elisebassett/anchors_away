@@ -18,9 +18,13 @@ $(document).on('turbolinks:load', function(){
 		$(this).closest('.job_info').remove();
 	});
 
+	$(document).ready(function() {
+	  $('text_field').material_select();
+	});
 
+	$('.description-field').val();
 
-
+  $('.description-field').trigger('autoresize');
 
 
 

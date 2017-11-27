@@ -1,10 +1,10 @@
 class BoatsController < ApplicationController
   def index
-
+    @boats = Boat.all
   end
 
   def show
-    @boats = Boat.all
+    
   end
 
   def new
@@ -38,7 +38,7 @@ class BoatsController < ApplicationController
   private
 
   def boat_params
-    params.require(:boat).permit(:location, :name, :containers)
+    params.require(:boat).permit(:location, :name, :containers, keys: [:avatar])
   end
 
 end

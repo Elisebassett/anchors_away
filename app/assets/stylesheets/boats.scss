@@ -1,8 +1,23 @@
 // Place all the styles related to the boats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.boat-avatar {
-	height: 200px;
-	width: 200px;
+.boat-image {
+	height: 300px;
 	overflow: hidden;
+}
+.card-image img {
+	flex: none;
+}
+
+.boat_edit {
+	bottom: 340px !important;
+}
+
+.boat_edit {
+	height: 80px !important;
+	width: 80px !important;
+}
+
+.boat_edit i {
+	line-height: 80px !important;
 }

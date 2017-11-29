@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function(){
 		$('.hide-job-field').show();
 	});
 
-	$(".delete_job").on('ajax:success', function(){
+	$(document).on('ajax:success', ".delete_job", function(){
 		$(this).closest('.job_info').remove();
 	});
 
@@ -25,7 +25,7 @@ $(document).on('turbolinks:load', function(){
 	  $('text_field').material_select();
 	});
 
-	$('.description-field').val();
+	// $('.description-field').val();
 
   $('.description-field').trigger('autoresize');
 

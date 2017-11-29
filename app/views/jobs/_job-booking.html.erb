@@ -1,0 +1,43 @@
+<ul class="collapsible">
+	<li>
+		<div class="collapsible-header"><i class="material-icons"></i><h5>Book A Boat</h5></div>
+		<div class="collapsible-body job-booking">
+			<span><!-- Book a boat form can only be seen by current users-->
+				<% if current_user %>
+					<% if job.open == true %>
+						<%= form_with model: Booking.new, class: "booking_form" do |f| %>
+							<%= f.hidden_field :job_id, value: job.id %>
+							<%= f.select(:boat_id) do %>
+								<option value="" disabled selected>Select a Ship</option>
+								<% current_user.boats.each do |boat| %>
+									<option value="<%= boat.id %>"><%= boat.name %> | Containers: <%= boat.containers %></option>
+								<% end %><!-- each loop -->
+							<% end %><!-- Select Do -->
+							<%= f.submit 'Book Boat', class: 'btn waves-effect waves-light' %>
+						<% end %><!-- form -->
+						<br>
+						<p>Containers left: <%= job.containers_left %></p>
+					<% else %>
+					<h4>This job has been closed</h4>	
+					<br>
+					<% end %><!-- if job is open or closed-->
+				<% end %><!-- if current_user -->
+			</span>	
+		</div>
+	</li>
+	<li>
+		<div class="collapsible-header booked-boats"><i class="material-icons"></i><h5>Booked Boats</h5></div>
+		<div class="collapsible-body"><span>
+			<div class="row">
+				<div class="col">
+					<h5>Booked Boats</h5>
+				</div>
+			</div>
+			<div class="bookings">
+				<% job.bookings.each do |booking| %>
+					<%= render booking %>
+				<% end %>
+			</div>
+		</span></div>
+	</li>
+</ul>

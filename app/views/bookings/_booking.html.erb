@@ -1,0 +1,12 @@
+<div class="booking">	
+	<div class="row">
+		<div class="col">
+			<p><%= booking.boat.name %> | Containers: <%= booking.boat.containers %></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<%= link_to "Remove", booking, method: :delete, class: 'remove_booking', remote: true %>
+		</div>
+	</div>
+</div>

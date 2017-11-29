@@ -13,7 +13,8 @@
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
-          <a href="/" class="brand-logo">Logo</a>
+          <%= image_tag "logo.png", class: 'brand-logo' %>
+          <a href="/" class="brand-logo"><img src="images/logo.png"></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><%= link_to "Browse Boats", boats_path%></li>
             <li><%= link_to "Browse Jobs", jobs_path%></li>

@@ -1,11 +1,13 @@
 $(document).on('turbolinks:load', function(){
 
 	$(".booking_form").on('submit', function(){
-		window.booking = $(this).closest('.job_info').find('.booking').attr('id');
+		window.job_section = $(this).closest('.job_info').attr('id');
+		$(this).closest('.booking-container').find('.booked-boats');
 	}); 
 
-	$(".remove_booking").on('ajax:success', function(){
-			$(this).closest('.booking').remove();
+	$(document).on('ajax:success', ".remove_booking", function(){
+		$(this).closest('.booking').remove();
+		window.job_section = $(this).closest('.job_info').attr('id');
 	});
 
 

@@ -6,7 +6,9 @@
 		<div class="card-content">
 			<div class="row">
 				<%= form_with model: boat, class: 'boat_edit_form' do |f| %>
-	        <a class="btn-floating halfway-fab waves-effect waves-light red boat_edit"><%= icon('pencil') %></a>
+					<% if boat.user == current_user %>
+		        <a class="btn-floating halfway-fab waves-effect waves-light red boat_edit"><%= icon('pencil') %></a>
+	        <% end %>
 					<%= f.file_field :avatar, class: 'hide-boat-field'%>
 					<%= f.text_field :name, value: boat.name, readonly: true, class: 'boat_edit_field boat_first_field title' %>
 					<% if boat.user == current_user %>

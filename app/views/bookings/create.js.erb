@@ -1,0 +1,4 @@
+$('#' + window.job_section).find('.booking-container').html("<%= j render 'jobs/job-booking', job: @booking.job %> ");
+// reinitialize materialize styling and functionality
+ $('.collapsible').collapsible();
+ $('select').material_select();

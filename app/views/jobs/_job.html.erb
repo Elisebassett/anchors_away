@@ -1,4 +1,4 @@
-<div class="job_info col s12">
+<div class="job_info col s6" id="job_<%= job.id %>">
 <!-- Job display and Hidden Edit form appears via js when Edit is clicked -->
 	<div class="card">
 		<div class="card-content">
@@ -33,63 +33,10 @@
 					<% end %>
 				<% end %>
 			</div>
-			<ul class="collapsible">
-				<li>
-					<div class="collapsible-header"><i class="material-icons"></i><h5>Book A Boat</h5></div>
-					<div class="collapsible-body">
-						<span><!-- Book a boat form can only be seen by current users-->
-							<% if current_user %>
-								<% if job.open == true %>
-									<%= form_with model: @new_booking, class: "booking_form" do |f| %>
-										<%= f.hidden_field :job_id, value: job.id %>
-										<%= f.select(:boat_id) do %>
-											<option value="" disabled selected>Select a Ship</option>
-											<% current_user.boats.each do |boat| %>
-												<option value="<%= boat.id %>"><%= boat.name %> | Containers: <%= boat.containers %></option>
-											<% end %><!-- each loop -->
-										<% end %><!-- Select Do -->
-										<%= f.submit 'Book Boat', class: 'btn waves-effect waves-light' %>
-									<% end %><!-- form -->
-								<% else %>
-								<h4>This job has been closed</h4>	
-								<% end %><!-- if job is open or closed-->
-							<% end %><!-- if current_user -->
-							
-							<br>
-							<p>Containers left: <%= job.containers_left %></p></span>
-					</div>
-				</li>
-				<li>
-					<div class="collapsible-header"><i class="material-icons"></i><h5>Booked Boats</h5></div>
-					<div class="collapsible-body"><span>
-						<div class="row">
-							<div class="col">
-								<h5>Booked Boats</h5>
-							</div>
-						</div>
-						<% job.bookings.each do |booking| %>
-								<div class="booking">	
-									<div class="row">
-										<div class="col">
-											<p><%= booking.boat.name %> | Containers: <%= booking.boat.containers %></p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-											<%= link_to "Remove", booking, method: :delete, class: 'remove_booking', remote: true %>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col">
-										</div>
-									</div>
-								</div>
-						<% end %>
-					</span></div>
 
-				</li>
-			</ul>
-			
+			<div class="booking-container">
+				<%= render 'jobs/job-booking', job: job %>
+			</div>
 
 
 		</div><!-- end of card content -->

@@ -5,10 +5,8 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col s6">
-			<% @boats.each do |boat| %>
-				<%= render :partial => 'boats/boat', :object => boat %>
-			<% end %>
-		</div>
+		<% @boats.each do |boat| %>
+			<%= render :partial => 'boats/boat', :object => boat %>
+		<% end %>
 	</div>
 </div>

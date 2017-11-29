@@ -5,7 +5,7 @@
 			<h1 class="col s11">Welcome <%= current_user.name %> </h1>
 		</div>
       <div class="parallax col s12">
-      	<%= image_tag 'http://www.caria.org/wp-content/uploads/2016/07/AFMS-II-Del-2-Barges.Final_.bmp', class: 'parallax-image' %></div>
+      	<%= image_tag "ship.jpg", class: 'parallax-image' %></div>
     </div><!-- banner content -->
 	</div><!-- banner container -->
 
@@ -15,8 +15,8 @@
         <li><%= link_to "Edit Info", edit_user_registration_path %></li>
 				<li><%= link_to "Add a Boat", new_boat_path %></li>
 				<li><%= link_to "Add a Job", new_job_path %></li>
-				<li><%= link_to "Browse Boats", boat_path %></li>
-				<li><%= link_to "Browse Jobs", job_path %></li>
+				<li><%= link_to "Browse Boats", boats_path %></li>
+				<li><%= link_to "Browse Jobs", jobs_path %></li>
       </ul>
     </div>
     <div class="nav-content">
@@ -44,11 +44,9 @@
   		</div>
   	</div>
 		<div class="row">
-			<div class="col s6">
 				<% @jobs.each do |job| %>
 					<%= render :partial => 'jobs/job', :object => job %>
 				<% end %>			
-			</div>
 		</div><!-- row -->
   </div>
 

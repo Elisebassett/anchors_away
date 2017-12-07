@@ -22,4 +22,7 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: ancors_away_production
+  password: <%= ENV["ANCORS_AWAY_PASSWORD"] %>
+  username: ancors_away
